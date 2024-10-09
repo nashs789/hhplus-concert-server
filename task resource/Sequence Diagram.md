@@ -10,8 +10,8 @@ sequenceDiagram
     participant Point
 
     activate Client
-    Client ->>+ Concert: 콘서트 가능한 목록 조회
     Note over Client, Concert: 콘서트 API
+    Client ->>+ Concert: 콘서트 가능한 목록 조회
     Concert ->> Concert: 예약 가능 날짜 목록 조회
     Note over Concert, Concert: Concert Schedule 조회
     Concert -->>- Client: 예약 가능한 콘서트 목록 반환
@@ -39,8 +39,11 @@ sequenceDiagram
     end
 
     activate Client
-    Client ->>+ Seat: 예약 가능한 좌석 조회
     Note over Client, Seat: 좌석 API
+    Client ->>+ Seat: 예약 가능한 좌석 조회
+    Seat ->> Seat: 좌석 조회
+    Seat -->>- Client: 예약 가능한 좌석 반환
+    Client ->>+ Seat: 좌석 예약 요청
     Seat ->>- Queue: 대기열 확인
     activate Queue
     Queue -->>+ Seat: 대기열 상태 반환
@@ -64,17 +67,17 @@ sequenceDiagram
         Seat -->> Client: 좌석 예약 불가능 리턴
     end
     
-    Client ->> Point: 포인트 충전 요청
     Note over Client, Point: 포인트 API
+    Client ->> Point: 포인트 충전 요청
     activate Point
     Point ->> Point: 유저 포인트 조회(Lock)
     Point ->> Point: 유저 포인트 충전
     Point -->> Client: 충전 결과 반환
     deactivate Point
 
+    Note over Client, Payment: 결제 API
     Client ->>+ Payment: 결제 요청
     Payment ->> Payment: 결제 정보 조회(Lock)
-    Note over Client, Payment: 결제 API
     Payment ->>- Ticket: 티켓 조회 요청
     activate Ticket
     Ticket ->> Ticket: 티켓 조회(Lock)
