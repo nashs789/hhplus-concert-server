@@ -52,7 +52,7 @@ sequenceDiagram
     activate Concert
     Concert -->> Seat: 예약 가능한 콘서트 확인 응답
     deactivate Concert
-    Seat -->>+ Seat: 예약 가능한 좌석인지 조회(Lock)
+    Seat ->>+ Seat: 예약 가능한 좌석인지 조회(Lock)
 
     alt 예약 가능 좌석
         Seat ->>- Ticket: 결제 미완료 티켓 생성
