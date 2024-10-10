@@ -72,6 +72,9 @@ sequenceDiagram
 
     activate Client
     Note over Client, Seat: 좌석 API
+    Client ->>+ Seat: 예약 가능한 좌석 조회
+    Seat ->> Seat: 좌석 조회
+    Seat -->>- Client: 예약 가능한 좌석 반환
     Client ->>+ Seat: 좌석 예약 요청
     Seat ->>- Queue: 대기열 확인
     activate Queue
