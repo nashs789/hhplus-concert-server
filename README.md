@@ -13,6 +13,15 @@
   - Postgresql 16.3
   - Spring Boot 3.3.4
 
+## 🔖 목차
+
+1. [Milestone](https://github.com/nashs789/hhplus-concert-server/tree/step05?tab=readme-ov-file#-milestone-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0)
+2. [Timeline](https://github.com/nashs789/hhplus-concert-server/tree/step05?tab=readme-ov-file#%EF%B8%8F-timeline-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0)
+3. [Sequence Diagram](https://github.com/nashs789/hhplus-concert-server/tree/step05?tab=readme-ov-file#-sequence-diagram)
+4. [Flow Chart](https://github.com/nashs789/hhplus-concert-server/tree/step05?tab=readme-ov-file#-flow-chart)
+
+---
+
 ## 🪧 Milestone [[바로가기]](https://github.com/nashs789/hhplus-concert-server/milestones)
 <img width="1215" alt="스크린샷 2024-10-09 오후 6 40 02" src="https://github.com/user-attachments/assets/658a8212-2da8-42f6-8a78-443f004e7ed8">
 
