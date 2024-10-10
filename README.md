@@ -210,3 +210,97 @@ flowchart TD
     M12 --> terminate
 
 ```
+
+## 🗃️ ERD
+
+```mermaid
+erDiagram
+    USER {
+        bigint user_id PK "유저 아이디"
+        string name "유저 이름"
+        datetime create_at "유저 생성일"
+        datetime update_at "유저 수정일"
+    }
+
+    QUEUE {
+        bigint queue_id PK "uuid"
+        bigint user_id FK "유저 아이디"
+        string status "토큰 상태(대기/시간 만료/예약 완료)"
+        datetime create_at "토큰 생성일"
+        datetime update_at "토큰 수정일"
+    }
+
+    CONCERT {
+        bigint concert_id PK "콘서트 아이디"
+        string title "콘서트 이름"
+        string singer "가수"
+        datetime create_at "콘서트 생성일"
+        datetime update_at "콘서트 수정일"
+    }
+
+    SCHEDULE {
+        bigint schedule_id PK "스케줄 아이디"
+        bigint concert_id FK "콘서트 아이디"
+        int capacity "콘서트 정원"
+        int reservation_count "예약한 인원"
+        int price "콘서트 가격"
+        datetime start_time "예약 시작 날짜"
+        datetime end_time "예약 종료 날짜"
+        datetime create_at "스케줄 생성일"
+        datetime update_at "스케줄 수정일"
+    }
+
+    SEAT {
+        bigint seat_id PK "좌석 아이디"
+        bigint schedule_id PK, FK "스케줄 아이디"
+        bigint user_id PK, FK "유저 아이디"
+        string status "좌석 상태(점유/미점유)"
+        datetime create_at "좌석 생성일"
+        datetime update_at "좌석 수정일"
+    }
+
+    TICKET {
+        bigint ticket_id PK "티켓 아이디"
+        bigint user_id PK, FK "유저 아이디"
+        bigint seat_id FK "좌석 아이디"
+        string status "티켓 상태(예약/취소/결제 완료)"
+        datetime create_at "티켓 생성일"
+        datetime update_at "티켓 수정일"
+    }
+
+    POINT {
+        bigint point_id PK "포인트 아이디"
+        bigint user_id PK, FK "유저 아이디"
+        bigint point "포인트"
+        datetime create_at "포인트 생성일"
+        datetime update_at "포인트 수정일"
+    }
+
+    POINT_HISTORY {
+        bigint point_history_id PK "이력 아이디"
+        bigint point_id PK, FK "포인트 아이디"
+        bigint type "사용 타입"
+        bigint amount "사용 금액"
+        bigint after_amount "사용 후 잔액"
+        datetime create_at "이력 생성일"
+        datetime update_at "이력 수정일"
+    }
+
+    PAYMENT {
+        bigint payment_id PK "결제 아이디"
+        bigint ticket_id PK, FK "티켓 아이디"
+        string status "결제 상태(대기, 완료, 취소, 환불)"
+        datetime paid_at "결제일"
+        datetime create_at "결제 생성일"
+        datetime update_at "결제 수정일"
+    }
+
+    USER ||--|| POINT: ""
+    POINT ||--o{ POINT_HISTORY: ""
+    CONCERT ||--o{ SCHEDULE: ""
+    SCHEDULE ||--o{ SEAT: ""
+    USER ||--o{ TICKET: ""
+    USER ||--|| QUEUE: ""
+    TICKET ||--|| SEAT: ""
+    PAYMENT ||--|| TICKET: ""
+```
