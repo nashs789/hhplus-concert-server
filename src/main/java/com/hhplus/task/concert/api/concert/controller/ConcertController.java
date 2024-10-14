@@ -1,14 +1,11 @@
 package com.hhplus.task.concert.api.concert.controller;
 
 import com.hhplus.task.concert.api.concert.dto.ConcertResponse;
+import com.hhplus.task.concert.api.concert.dto.SeatResponse;
 import com.hhplus.task.concert.application.concert.ConcertFacade;
-import com.hhplus.task.concert.infra.concert.entity.Concert;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +22,17 @@ public class ConcertController {
     }
 
     @PostMapping("reservation")
-    public ResponseEntity createReservation() {
+    public ResponseEntity createConcertReservation() {
+        return null;
+    }
+
+    @GetMapping("seat/{scheduleId}")
+    public ResponseEntity<List<SeatResponse>> getAllSeats(@PathVariable("scheduleId") Long scheduleId) {
+        return ResponseEntity.ok(concertFacade.getAllSeats(scheduleId));
+    }
+
+    @PostMapping("seat/reservation")
+    public ResponseEntity createSeatReservation() {
         return null;
     }
 }

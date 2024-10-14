@@ -1,7 +1,7 @@
-package com.hhplus.task.concert.infra.seat.entity;
+package com.hhplus.task.concert.infra.concert.entity;
 
+import com.hhplus.task.concert.domain.dto.SeatInfo;
 import com.hhplus.task.concert.infra.common.entity.Timestamp;
-import com.hhplus.task.concert.infra.concert.entity.ConcertSchedule;
 import com.hhplus.task.concert.infra.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +14,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Seat extends Timestamp {
 
-    enum SeatStatus{
+    public enum SeatStatus{
         TAKEN, NOT_TAKEN;
     }
 
@@ -32,4 +32,13 @@ public class Seat extends Timestamp {
 
     @Enumerated(EnumType.STRING)
     private SeatStatus status;
+
+    public SeatInfo toInfo() {
+        return SeatInfo.builder()
+                       .id(id)
+                       .concertSchedule(concertSchedule)
+                       .user(user)
+                       .status(status)
+                       .build();
+    }
 }
