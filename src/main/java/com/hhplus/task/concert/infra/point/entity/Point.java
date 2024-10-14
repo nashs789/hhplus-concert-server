@@ -1,21 +1,17 @@
-package com.hhplus.task.concert.infra.queue;
+package com.hhplus.task.concert.infra.point.entity;
 
 import com.hhplus.task.concert.infra.common.entity.Timestamp;
-import com.hhplus.task.concert.infra.user.User;
+import com.hhplus.task.concert.infra.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
 @ToString
-@Table(name = "waiting_queue")
+@Table(name = "point")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class WaitingQueue extends Timestamp {
-
-    enum TokenStatus {
-        WAIT, EXPIRED, RESERVED
-    }
+public class Point extends Timestamp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +21,6 @@ public class WaitingQueue extends Timestamp {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Enumerated(EnumType.STRING)
-    private TokenStatus status;
+    @Column(nullable = false)
+    private Integer point;
 }

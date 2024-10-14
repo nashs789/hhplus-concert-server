@@ -1,4 +1,4 @@
-package com.hhplus.task.concert.infra.payment;
+package com.hhplus.task.concert.infra.payment.entity;
 
 import com.hhplus.task.concert.infra.common.entity.Timestamp;
 import jakarta.persistence.*;

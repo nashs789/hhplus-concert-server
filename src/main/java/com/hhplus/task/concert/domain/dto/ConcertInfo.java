@@ -1,5 +1,6 @@
 package com.hhplus.task.concert.domain.dto;
 
+import com.hhplus.task.concert.api.concert.dto.ConcertResponse;
 import com.hhplus.task.concert.infra.concert.entity.ConcertSchedule;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,4 +17,13 @@ public class ConcertInfo {
     private String name;
     private String singer;
     private List<ConcertSchedule> concertSchedule;
+
+    public ConcertResponse toResponse() {
+        return ConcertResponse.builder()
+                              .id(id)
+                              .name(name)
+                              .singer(singer)
+                              .concertSchedule(concertSchedule)
+                              .build();
+    }
 }

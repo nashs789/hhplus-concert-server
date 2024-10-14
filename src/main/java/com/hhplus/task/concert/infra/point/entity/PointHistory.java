@@ -1,4 +1,4 @@
-package com.hhplus.task.concert.infra.point;
+package com.hhplus.task.concert.infra.point.entity;
 
 import com.hhplus.task.concert.infra.common.entity.Timestamp;
 import jakarta.persistence.*;

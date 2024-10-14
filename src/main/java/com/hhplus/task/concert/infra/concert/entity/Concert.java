@@ -30,7 +30,7 @@ public class Concert extends Timestamp {
     @OneToMany(mappedBy = "concert", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ConcertSchedule> schedules = new ArrayList<>();
 
-    public ConcertInfo toConcertInfo() {
+    public ConcertInfo toInfo() {
         return ConcertInfo.builder()
                           .id(id)
                           .name(name)

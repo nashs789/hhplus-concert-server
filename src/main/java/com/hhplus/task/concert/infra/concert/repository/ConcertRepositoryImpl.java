@@ -20,7 +20,7 @@ public class ConcertRepositoryImpl implements ConcertRepository {
     public List<ConcertInfo> findAvailableConcerts() {
         return concertRepository.findAvailableConcerts(LocalDateTime.now())
                                 .stream()
-                                .map(Concert::toConcertInfo)
+                                .map(Concert::toInfo)
                                 .collect(Collectors.toList());
     }
 }
