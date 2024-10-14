@@ -1,5 +1,6 @@
-package com.hhplus.task.concert.infra.concert;
+package com.hhplus.task.concert.infra.concert.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hhplus.task.concert.infra.common.entity.Timestamp;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @ToString
-@Table(name = "concert")
+@Table(name = "concert_schedule")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class ConcertSchedule extends Timestamp {
@@ -18,8 +19,10 @@ public class ConcertSchedule extends Timestamp {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "concert_id", nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private Concert concert;
 
     @Column(nullable = false)

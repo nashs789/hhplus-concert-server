@@ -1,7 +1,7 @@
 package com.hhplus.task.concert.infra.ticket;
 
 import com.hhplus.task.concert.infra.common.entity.Timestamp;
-import com.hhplus.task.concert.infra.concert.ConcertSchedule;
+import com.hhplus.task.concert.infra.concert.entity.ConcertSchedule;
 import com.hhplus.task.concert.infra.seat.Seat;
 import com.hhplus.task.concert.infra.user.User;
 import jakarta.persistence.*;
