@@ -13,4 +13,8 @@ public class QueueService {
     public QueueResponse createToken(Long userId) {
         return queueRepository.createToken(userId).toResponse();
     }
+
+    public QueueResponse findByQueueId(String queueId) {
+        return queueRepository.findByQueueId(queueId).toResponse();
+    }
 }
