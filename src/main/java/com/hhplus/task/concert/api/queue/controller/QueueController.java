@@ -2,7 +2,9 @@ package com.hhplus.task.concert.api.queue.controller;
 
 import com.hhplus.task.concert.api.queue.dto.QueueRequest;
 import com.hhplus.task.concert.api.queue.dto.QueueResponse;
+import com.hhplus.task.concert.domain.common.aspect.TokenCheck;
 import com.hhplus.task.concert.domain.queue.repository.QueueService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,11 @@ public class QueueController {
         return ResponseEntity.ok(queueService.createToken(queueRequest.userId()));
     }
 
-    @GetMapping("{queueId}")
-    public ResponseEntity<QueueResponse> findByQueueId(@PathVariable("queueId") String queueId) {
-        return ResponseEntity.ok(queueService.findByQueueId(queueId));
+    @GetMapping
+    @TokenCheck
+    public ResponseEntity<QueueResponse> findByQueueId(HttpServletRequest request) {
+        String token = request.getHeader("Authorization").split(" ")[1];  // Bearer 문자 제거
+
+        return ResponseEntity.ok(queueService.findByQueueId(token));
     }
 }
