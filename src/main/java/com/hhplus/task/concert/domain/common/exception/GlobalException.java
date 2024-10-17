@@ -4,6 +4,7 @@ import com.hhplus.task.concert.domain.common.dto.ExceptionInfo;
 import com.hhplus.task.concert.domain.concert.exception.ConcertScheduleException;
 import com.hhplus.task.concert.domain.concert.exception.SeatException;
 import com.hhplus.task.concert.domain.queue.exception.QueueException;
+import com.hhplus.task.concert.domain.user.exception.PointException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -32,6 +33,12 @@ public class GlobalException {
 
     @ExceptionHandler(value = ConcertScheduleException.class)
     public ResponseEntity<ExceptionInfo> handleException(ConcertScheduleException e) {
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR)
+                             .body(toExceptionInfo(e));
+    }
+
+    @ExceptionHandler(value = PointException.class)
+    public ResponseEntity<ExceptionInfo> handleException(PointException e) {
         return ResponseEntity.status(INTERNAL_SERVER_ERROR)
                              .body(toExceptionInfo(e));
     }

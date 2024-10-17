@@ -1,5 +1,6 @@
 package com.hhplus.task.concert.infra.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hhplus.task.concert.domain.user.dto.UserInfo;
 import com.hhplus.task.concert.infra.common.entity.Timestamp;
 import jakarta.persistence.*;
@@ -20,6 +21,10 @@ public class User extends Timestamp {
 
     @Column(nullable = false)
     private String name;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "user")
+    private Point point;
 
     public UserInfo toInfo() {
         return UserInfo.builder()
