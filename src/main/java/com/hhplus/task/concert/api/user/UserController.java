@@ -1,12 +1,11 @@
 package com.hhplus.task.concert.api.user;
 
+import com.hhplus.task.concert.api.user.dto.PointRequest;
 import com.hhplus.task.concert.api.user.dto.PointResponse;
 import com.hhplus.task.concert.application.user.UserFacade;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/user/")
@@ -16,7 +15,14 @@ public class UserController {
     private final UserFacade userFacade;
 
     @GetMapping("{userId}/point")
-    public PointResponse getPoint(@PathVariable Long userId) {
-        return userFacade.getPoint(userId);
+    public ResponseEntity<PointResponse> getPoint(@PathVariable Long userId) {
+        return ResponseEntity.ok(userFacade.getPoint(userId));
+    }
+
+    @PutMapping("charge/point")
+    public ResponseEntity chargePoint(@RequestBody PointRequest pointRequest) {
+        userFacade.chargePoint(pointRequest.userId(), pointRequest.point());
+
+        return ResponseEntity.ok("");
     }
 }

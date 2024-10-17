@@ -10,7 +10,11 @@ public class PointService {
 
     private final PointRepository pointRepository;
 
-    public PointInfo getPoint(Long userId) {
+    public PointInfo getPoint(final Long userId) {
         return pointRepository.getPoint(userId);
+    }
+
+    public void chargePoint(final Long userId, final Long point) {
+        pointRepository.chargePoint(userId, point);
     }
 }

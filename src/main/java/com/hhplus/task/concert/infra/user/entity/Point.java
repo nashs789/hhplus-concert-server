@@ -8,7 +8,6 @@ import lombok.*;
 
 @Entity
 @Getter
-@ToString
 @Table(name = "point")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
