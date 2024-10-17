@@ -1,18 +1,19 @@
 package com.hhplus.task.concert.infra.user.entity;
 
+import com.hhplus.task.concert.domain.user.dto.PointHistoryInfo;
 import com.hhplus.task.concert.infra.common.entity.Timestamp;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
-@ToString
+@Builder
 @Table(name = "point_history")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class PointHistory extends Timestamp {
 
-    enum PointUseType {
+    public enum PointUseType {
         USE, CHARGE
     }
 
@@ -32,4 +33,14 @@ public class PointHistory extends Timestamp {
 
     @Column(name = "after_amount", nullable = false)
     private Integer afterAmount;
+
+    public PointHistoryInfo toInfo() {
+        return PointHistoryInfo.builder()
+                               .id(id)
+                               .point(point)
+                               .type(type)
+                               .amount(amount)
+                               .afterAmount(afterAmount)
+                               .build();
+    }
 }

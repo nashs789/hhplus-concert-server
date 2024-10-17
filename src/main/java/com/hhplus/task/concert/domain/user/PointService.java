@@ -14,6 +14,10 @@ public class PointService {
         return pointRepository.getPoint(userId);
     }
 
+    public PointInfo getPointWithLock(final Long userId) {
+        return pointRepository.getPointWithLock(userId);
+    }
+
     public void chargePoint(final Long userId, final Long point) {
         pointRepository.chargePoint(userId, point);
     }

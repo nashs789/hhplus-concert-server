@@ -8,6 +8,7 @@ import lombok.*;
 
 @Entity
 @Getter
+@Builder
 @Table(name = "point")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
@@ -31,5 +32,13 @@ public class Point extends Timestamp {
                         .user(user)
                         .point(point)
                         .build();
+    }
+
+    public static Point toEntity(PointInfo pointInfo) {
+        return Point.builder()
+                    .id(pointInfo.getId())
+                    .user(pointInfo.getUser())
+                    .point(pointInfo.getPoint())
+                    .build();
     }
 }

@@ -1,5 +1,6 @@
 package com.hhplus.task.concert.api.user;
 
+import com.hhplus.task.concert.api.user.dto.PointHistoryResponse;
 import com.hhplus.task.concert.api.user.dto.PointRequest;
 import com.hhplus.task.concert.api.user.dto.PointResponse;
 import com.hhplus.task.concert.application.user.UserFacade;
@@ -20,9 +21,7 @@ public class UserController {
     }
 
     @PutMapping("charge/point")
-    public ResponseEntity chargePoint(@RequestBody PointRequest pointRequest) {
-        userFacade.chargePoint(pointRequest.userId(), pointRequest.point());
-
-        return ResponseEntity.ok("");
+    public ResponseEntity<PointHistoryResponse> chargePoint(@RequestBody PointRequest pointRequest) {
+        return ResponseEntity.ok(userFacade.chargePoint(pointRequest.userId(), pointRequest.point()));
     }
 }

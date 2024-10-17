@@ -22,8 +22,12 @@ public class PointRepositoryImpl implements PointRepository {
     }
 
     @Override
+    public PointInfo getPointWithLock(Long userId) {
+        return pointJpaRepository.findByIdWithLock(userId).toInfo();
+    }
+
+    @Override
     public void chargePoint(final Long userId, final Long point) {
-        pointJpaRepository.findByIdWithLock(userId);
         pointJpaRepository.chargePoint(userId, point);
     }
 }

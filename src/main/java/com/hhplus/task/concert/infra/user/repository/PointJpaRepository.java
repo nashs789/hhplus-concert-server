@@ -31,8 +31,8 @@ public interface PointJpaRepository extends JpaRepository<Point, Long> {
     @Modifying
     @Query("""
         UPDATE Point s
-           SET s.point = s.point - :point
-         WHERE s.user.id = :userId 
+           SET s.point = :point
+         WHERE s.user.id = :userId
     """)
     int usePoint(@Param("userId") Long userId, @Param("point") Long point);
 }
