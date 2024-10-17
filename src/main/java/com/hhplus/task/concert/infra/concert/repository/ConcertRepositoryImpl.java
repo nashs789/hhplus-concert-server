@@ -1,7 +1,7 @@
 package com.hhplus.task.concert.infra.concert.repository;
 
 import com.hhplus.task.concert.domain.concert.ConcertRepository;
-import com.hhplus.task.concert.domain.dto.ConcertInfo;
+import com.hhplus.task.concert.domain.concert.dto.ConcertInfo;
 import com.hhplus.task.concert.infra.concert.entity.Concert;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

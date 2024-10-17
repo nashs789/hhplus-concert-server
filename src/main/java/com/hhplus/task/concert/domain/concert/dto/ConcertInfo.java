@@ -1,4 +1,4 @@
-package com.hhplus.task.concert.domain.dto;
+package com.hhplus.task.concert.domain.concert.dto;
 
 import com.hhplus.task.concert.api.concert.dto.ConcertResponse;
 import com.hhplus.task.concert.infra.concert.entity.ConcertSchedule;

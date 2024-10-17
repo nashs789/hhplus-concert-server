@@ -1,5 +1,7 @@
 package com.hhplus.task.concert.infra.ticket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hhplus.task.concert.domain.ticket.dto.TicketInfo;
 import com.hhplus.task.concert.infra.common.entity.Timestamp;
 import com.hhplus.task.concert.infra.concert.entity.ConcertSchedule;
 import com.hhplus.task.concert.infra.concert.entity.Seat;
@@ -9,13 +11,13 @@ import lombok.*;
 
 @Entity
 @Getter
-@ToString
+@Builder
 @Table(name = "ticket")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Ticket extends Timestamp {
 
-    enum TicketStatus {
+    public enum TicketStatus {
         PROGRESS, CANCELED, PENDING, RESERVED, USED
     }
 
@@ -23,15 +25,35 @@ public class Ticket extends Timestamp {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude
     @JoinColumn(name = "seat_id", nullable = false)
     private Seat seat;
 
-    @ManyToOne
-    @JoinColumn(name = "concert_schedule_id", nullable = false)
-    private ConcertSchedule concertSchedule;
+    @Enumerated(EnumType.STRING)
+    private TicketStatus status;
+
+    public TicketInfo toInfo() {
+        return TicketInfo.builder()
+                         .id(id)
+                         .user(user)
+                         .seat(seat)
+                         .build();
+    }
+
+    public static Ticket toEntity(TicketInfo ticketInfo) {
+        return Ticket.builder()
+                     .id(ticketInfo.getId())
+                     .user(ticketInfo.getUser())
+                     .seat(ticketInfo.getSeat())
+                     .status(ticketInfo.getStatus())
+                     .build();
+    }
 }

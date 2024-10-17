@@ -1,6 +1,6 @@
 package com.hhplus.task.concert.infra.concert.entity;
 
-import com.hhplus.task.concert.domain.dto.ConcertInfo;
+import com.hhplus.task.concert.domain.concert.dto.ConcertInfo;
 import com.hhplus.task.concert.infra.common.entity.Timestamp;
 import jakarta.persistence.*;
 import lombok.*;

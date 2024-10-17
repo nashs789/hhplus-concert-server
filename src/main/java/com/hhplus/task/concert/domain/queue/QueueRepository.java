@@ -1,6 +1,5 @@
-package com.hhplus.task.concert.domain.queue.repository;
+package com.hhplus.task.concert.domain.queue;
 
-import com.hhplus.task.concert.api.queue.dto.QueueResponse;
 import com.hhplus.task.concert.domain.queue.dto.WaitingQueueInfo;
 
 public interface QueueRepository {

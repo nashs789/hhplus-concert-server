@@ -12,7 +12,9 @@ public class QueueException extends DomainException {
     @Getter
     @RequiredArgsConstructor
     public enum QueueExceptionConst {
-        TOKEN_NOT_FOUND(NOT_FOUND, "대기열이 만료되었습니다.");
+        TOKEN_NOT_INCLUDED(NOT_FOUND, "토큰을 전송 하지 않았습니다"),
+        TOKEN_NOT_FOUND(NOT_FOUND, "대기열이 만료되었습니다.")
+        ;
 
         private final HttpStatus status;
         private final String msg;

@@ -1,8 +1,10 @@
 package com.hhplus.task.concert.api.concert.controller;
 
 import com.hhplus.task.concert.api.concert.dto.ConcertResponse;
+import com.hhplus.task.concert.api.concert.dto.SeatRequest;
 import com.hhplus.task.concert.api.concert.dto.SeatResponse;
 import com.hhplus.task.concert.application.concert.ConcertFacade;
+import com.hhplus.task.concert.domain.common.aspect.ValidToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +33,13 @@ public class ConcertController {
         return ResponseEntity.ok(concertFacade.getAllSeats(scheduleId));
     }
 
-    @PostMapping("seat/reservation")
-    public ResponseEntity createSeatReservation() {
-        return null;
+    @ValidToken
+    @PutMapping("seat/reservation")
+    public ResponseEntity createSeatReservation(@RequestBody SeatRequest seatRequest) {
+        return ResponseEntity.ok(concertFacade.createSeatReservation(
+                seatRequest.userId(),
+                seatRequest.scheduleId(),
+                seatRequest.seatId()
+        ));
     }
 }
